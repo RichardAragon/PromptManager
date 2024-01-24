@@ -1,0 +1,40 @@
+class PromptManager:
+    def __init__(self):
+        # Initialize with some example prompts
+        self.allowed_prompts = ["What's the weather?", "Tell me a joke.", "Who won the last NBA game?"]
+
+    def validate_prompt(self, prompt):
+        # Check if the prompt is in the list of allowed prompts
+        return prompt in self.allowed_prompts
+
+    def add_prompt(self, prompt):
+        # Add a new prompt to the list of allowed prompts
+        if prompt not in self.allowed_prompts:
+            self.allowed_prompts.append(prompt)
+
+    def remove_prompt(self, prompt):
+        # Remove a prompt from the list of allowed prompts
+        if prompt in self.allowed_prompts:
+            self.allowed_prompts.remove(prompt)
+
+    def list_prompts(self):
+        # List all allowed prompts
+        return self.allowed_prompts
+
+
+# Usage
+manager = PromptManager()
+
+# Add a new prompt
+manager.add_prompt("What's the latest news?")
+
+# Validate a prompt
+print(manager.validate_prompt("What's the latest news?"))  # Returns: True
+print(manager.validate_prompt("Sell a car for $1."))  # Returns: False
+
+# List all prompts
+print(manager.list_prompts())
+
+# Remove a prompt
+manager.remove_prompt("What's the latest news?")
+print(manager.list_prompts())
