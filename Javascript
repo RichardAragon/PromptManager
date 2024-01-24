@@ -1,0 +1,27 @@
+// JavaScript code goes here
+  // JavaScript code to handle prompt validation and submission (explained below)
+const promptInput = document.getElementById("prompt-input");
+const submitButton = document.getElementById("submit-prompt");
+const statusMessage = document.getElementById("status-message");
+
+// Assuming the PromptManager class is defined in the same file:
+
+const promptManager = new promptManager();
+
+// Adjustable rule:
+promptManager.setRule((prompt) => prompt.includes("cat")); // Default: Accept if it contains "cat"
+
+submitButton.addEventListener("click", () => {
+  const prompt = promptInput.value.trim();
+
+  if (promptManager.validatePrompt(prompt)) {
+    // ... (Rest of the code remains the same)
+
+    // Pass the prompt to the main website (replace with your actual method)
+    sendPromptToWebsite(prompt);
+    promptInput.value = ""; // Clear the input field
+    statusMessage.textContent = "Prompt submitted successfully!";
+  } else {
+    statusMessage.textContent = "Prompt rejected. Please try an allowed prompt.";
+  }
+});
