@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+  </head>
+  <body>
+    <div id="Prompt-Manager">
+      <h2>Prompt Manager</h2>
+      <input type="text" id="prompt-input" placeholder="Enter your prompt here">
+      <button id="submit-prompt">Submit</button>
+      <div id="status-message"></div>
+    </div>
+
+    <script>
+// Select HTML elements:
+const promptInput = document.getElementById("prompt-input");
+const submitButton = document.getElementById("submit-prompt");
+const statusMessage = document.getElementById("status-message");
+
+// PromptManager class:
+class PromptManager {
+  constructor() {
+    this.rule = null;
+  }
+
+  setRule(rule) {
+    this.rule = rule;
+  }
+
+  validatePrompt(prompt) {
+    if (this.rule) {
+      return this.rule(prompt);
+    }
+    return true; // Validate successfully if no rule is set
+  }
+}
+
+// Create a PromptManager instance:
+const myPromptManager = new PromptManager();
+
+// Set a validation rule (optional):
+myPromptManager.setRule((prompt) => prompt.toLowerCase().includes("cat"));
+
+// Event listener for the submit button:
+submitButton.addEventListener("click", () => {
+  const prompt = promptInput.value.trim();
+
+  if (myPromptManager.validatePrompt(prompt)) {
+    // Process the prompt (replace with your actual logic):
+    // sendPromptToWebsite(prompt);
+
+    promptInput.value = ""; // Clear the input field
+    statusMessage.textContent = "Success!";
+  } else {
+    statusMessage.textContent = "Your Prompt Must Contain The Word Cat To Submit.";
+  }
+});
+    </script>
+  </body>
+</html>
